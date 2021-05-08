@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import com.projeto_proposta.cartao.Cartao;
 import com.projeto_proposta.cartao.CartaoRequest;
 import com.projeto_proposta.cartao.RestricaoCartao;
 import com.projeto_proposta.validation.CpfOuCnpj;
@@ -38,6 +39,9 @@ public class Proposta {
 	
 	@Enumerated(EnumType.STRING)
 	private RestricaoCartao restricao;
+	
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	private Cartao cartao;
 	
 	
 	@Deprecated
@@ -100,6 +104,14 @@ public class Proposta {
 	public void adicionaRestricao(RestricaoCartao elegivel) {
 		this.restricao = elegivel;
 
+	}
+	
+	public Cartao getCartao() {
+		return cartao;
+	}
+
+	public void adicionaCartao(Cartao cartao){
+		this.cartao = cartao;
 	}
 
 }
