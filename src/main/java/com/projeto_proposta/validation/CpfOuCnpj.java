@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @Documented //https://docs.oracle.com/javase/7/docs/api/java/lang/annotation/Documented.html
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CPF_CNPJ {
+public @interface CpfOuCnpj {
 	
 	String message() default "CPF ou CNPJ inválido.";
 

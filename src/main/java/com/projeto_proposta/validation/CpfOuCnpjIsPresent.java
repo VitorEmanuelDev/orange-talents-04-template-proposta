@@ -10,14 +10,14 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.projeto_proposta.nova_proposta.Proposta;
-import com.projeto_proposta.nova_proposta.PropostaRepository;
-import com.projeto_proposta.nova_proposta.PropostaRequest;
+import com.projeto_proposta.proposta.Proposta;
+import com.projeto_proposta.proposta.PropostaRepository;
+import com.projeto_proposta.proposta.PropostaRequest;
 
 
 
 @Component
-public class CPF_CNPJ_IsPresent implements Validator{
+public class CpfOuCnpjIsPresent implements Validator{
 
 	@Autowired
 	private PropostaRepository repository;

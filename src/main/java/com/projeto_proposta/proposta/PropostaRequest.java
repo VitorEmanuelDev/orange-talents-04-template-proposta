@@ -1,17 +1,17 @@
-package com.projeto_proposta.nova_proposta;
+package com.projeto_proposta.proposta;
 
 import java.math.BigDecimal;
 
 import javax.validation.constraints.*;
 
-import com.projeto_proposta.validation.CPF_CNPJ;
+import com.projeto_proposta.validation.CpfOuCnpj;
 
 
 
 public class PropostaRequest {
 
 
-	@CPF_CNPJ
+	@CpfOuCnpj
 	private String documento;
 	
 	@Email

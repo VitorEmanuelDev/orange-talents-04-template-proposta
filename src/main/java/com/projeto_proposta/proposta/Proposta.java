@@ -1,11 +1,13 @@
-package com.projeto_proposta.nova_proposta;
+package com.projeto_proposta.proposta;
 
 import java.math.BigDecimal;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-import com.projeto_proposta.validation.CPF_CNPJ;
+import com.projeto_proposta.cartao.CartaoRequest;
+import com.projeto_proposta.cartao.RestricaoCartao;
+import com.projeto_proposta.validation.CpfOuCnpj;
 
 @Entity
 public class Proposta {
@@ -14,7 +16,7 @@ public class Proposta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@CPF_CNPJ
+	@CpfOuCnpj
 	private String documento;
 	
 	@Email
@@ -34,6 +36,9 @@ public class Proposta {
 	@Positive
 	private BigDecimal salario;
 	
+	@Enumerated(EnumType.STRING)
+	private RestricaoCartao restricao;
+	
 	
 	@Deprecated
 	public Proposta() {
@@ -47,6 +52,17 @@ public class Proposta {
 		this.nome = nome;
 		this.endereco = endereco;
 		this.salario = salario;
+	}
+	
+	public Proposta(String documento, @Email @NotNull @NotBlank String email, @NotNull @NotBlank String nome,
+			@NotNull @NotBlank String endereco, @NotNull @Positive BigDecimal salario, RestricaoCartao restricao) {
+		super();
+		this.documento = documento;
+		this.email = email;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.salario = salario;
+		this.restricao = restricao;
 	}
 	
 	public Long getId() {
@@ -71,6 +87,19 @@ public class Proposta {
 
 	public BigDecimal getSalario() {
 		return salario;
+	}
+	
+	public RestricaoCartao getRestricao() {
+		return restricao;
+	}
+
+	public CartaoRequest toModelCartao() {
+		return new CartaoRequest(documento, nome, id.toString());
+	}
+
+	public void adicionaRestricao(RestricaoCartao elegivel) {
+		this.restricao = elegivel;
+
 	}
 
 }

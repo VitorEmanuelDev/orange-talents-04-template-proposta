@@ -1,4 +1,4 @@
-package com.projeto_proposta.nova_proposta;
+package com.projeto_proposta.proposta;
 
 import java.math.BigDecimal;
 import java.util.Optional;
