@@ -9,7 +9,7 @@ import com.projeto_proposta.cartao.CartaoClientResponse;
 @FeignClient(url = "${cartoes.host}", name = "cartoes")
 public interface Cartoes {
 
-    @GetMapping("/api/cartoes")
+    @GetMapping
     public CartaoClientResponse cartaoParaProposta(@RequestParam(name = "idProposta") String idProposta);
     
 }

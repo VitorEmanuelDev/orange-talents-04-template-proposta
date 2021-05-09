@@ -40,7 +40,7 @@ public class Proposta {
 	@Enumerated(EnumType.STRING)
 	private RestricaoCartao restricao;
 	
-	@OneToOne(cascade =CascadeType.MERGE)
+	@OneToOne(cascade = CascadeType.MERGE)
 	private Cartao cartao;
 	
 	
