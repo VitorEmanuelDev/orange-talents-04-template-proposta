@@ -1,10 +1,12 @@
 package com.projeto_proposta.proposta;
 
 import java.net.URI;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.WebDataBinder;
@@ -48,7 +50,7 @@ public class PropostaController {
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<PropostaResponse> createProposta(@RequestBody @Valid PropostaRequest request,
+	public ResponseEntity<PropostaResponse> criaProposta(@RequestBody @Valid PropostaRequest request,
 			UriComponentsBuilder uriComponentsBuilder) {
 		
 		Proposta proposta = request.toModel();
@@ -57,6 +59,26 @@ public class PropostaController {
 		URI uri = uriComponentsBuilder.path("/propostas/{id}").build(proposta.getId());
 		return ResponseEntity.created(uri).build();
 	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<PropostaResponse> consultaProposta(@PathVariable("id") Long id){
+		
+		Optional<Proposta> proposta = repository.findById(id);
+		
+		if(proposta.isPresent()) {
+			
+			return ResponseEntity.ok(new PropostaResponse(proposta));
+		
+		}else {
+			
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+			
+		}
+		
+		
+		
+	}
+	
 
 	private void verificaRestricao(Proposta proposta) {
 		

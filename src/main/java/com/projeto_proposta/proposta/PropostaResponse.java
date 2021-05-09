@@ -11,6 +11,7 @@ public class PropostaResponse {
 	private String nome;
 	private String endereco;
 	private BigDecimal salario;
+	private String status;
 
 	
 	@Deprecated
@@ -18,12 +19,13 @@ public class PropostaResponse {
 
 	}
 
-	public PropostaResponse(Long id, String documento, String nome, String endereco, BigDecimal salario) {
+	public PropostaResponse(Long id, String documento, String nome, String endereco, BigDecimal salario, String status) {
 		this.id = id;
 		this.documento = documento;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.salario = salario;
+		this.status = status;
 	
 	}
 
@@ -34,6 +36,7 @@ public class PropostaResponse {
 		this.nome = proposta.get().getNome();
 		this.endereco = proposta.get().getEndereco();
 		this.salario = proposta.get().getSalario();
+		this.status = proposta.get().getRestricao().toString();
 	
 	}
 
@@ -55,6 +58,10 @@ public class PropostaResponse {
 
 	public BigDecimal getSalario() {
 		return salario;
+	}
+	
+	public String getStatus() {
+		return status;
 	}
 
 }

@@ -28,11 +28,12 @@ public class ConsultaPropostas {
         this.propostaRepository = propostaRepository;
         this.cartao = cartao;
     }
-    @Scheduled(fixedDelayString = "${periodicidade.executa-operacao}")
+   
+   @Scheduled(fixedDelayString = "${periodicidade.executa-operacao}")
    @Transactional
     private void consultaPropostasElegiveis() {
     	
-       List<Proposta> proposta = propostaRepository.findByRestricao(RestricaoCartao.ELEGIVEL);
+	   List<Proposta> proposta = propostaRepository.findByRestricaoECartao(RestricaoCartao.ELEGIVEL, null);
        
       try{
     	  
@@ -40,7 +41,7 @@ public class ConsultaPropostas {
         	   
                CartaoClientResponse novoCartao = cartao.cartaoParaProposta(lista.getId().toString());
                lista.adicionaCartao(novoCartao.toModel(lista));
-               lista.adicionaRestricao(RestricaoCartao.NAO_ELEGIVEL);
+               //lista.adicionaRestricao(RestricaoCartao.NAO_ELEGIVEL);
                propostaRepository.save(lista);
            }
            
