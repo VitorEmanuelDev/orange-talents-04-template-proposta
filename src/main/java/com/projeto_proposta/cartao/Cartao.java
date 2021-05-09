@@ -1,7 +1,10 @@
 package com.projeto_proposta.cartao;
 
+import java.util.List;
+
 import javax.persistence.*;
 
+import com.projeto_proposta.biometria.Biometria;
 import com.projeto_proposta.proposta.Proposta;
 
 
@@ -16,6 +19,10 @@ public class Cartao {
 
     @OneToOne(mappedBy = "cartao")
     private Proposta proposta;
+    
+    @OneToMany(mappedBy = "cartao")
+    private List<Biometria> biometrias;
+
     
     @Deprecated
     public Cartao() {
