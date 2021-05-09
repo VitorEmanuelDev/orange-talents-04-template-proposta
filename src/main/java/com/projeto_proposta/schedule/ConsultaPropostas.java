@@ -29,11 +29,11 @@ public class ConsultaPropostas {
         this.cartao = cartao;
     }
    
-   @Scheduled(fixedDelayString = "${periodicidade.executa-operacao}")
-   @Transactional
+   @Scheduled(fixedDelayString = "${periodicidade.tentativa-numero-cartao}")
+   //@Transactional
     private void consultaPropostasElegiveis() {
     	
-	   List<Proposta> proposta = propostaRepository.findByRestricaoECartao(RestricaoCartao.ELEGIVEL, null);
+	   List<Proposta> proposta = propostaRepository.findByRestricaoAndCartao(RestricaoCartao.ELEGIVEL, null);
        
       try{
     	  
@@ -46,7 +46,7 @@ public class ConsultaPropostas {
            }
            
        }catch (FeignException.UnprocessableEntity e){
-
+    	   e.printStackTrace();
       }
       
     }

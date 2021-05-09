@@ -14,6 +14,6 @@ public interface PropostaRepository extends JpaRepository<Proposta, Long>{
 
 	Optional<Proposta> findByDocumento(String documento);
 	
-	List<Proposta> findByRestricaoECartao(RestricaoCartao restricao, Cartao cartao);
+	List<Proposta> findByRestricaoAndCartao(RestricaoCartao restricao, Cartao cartao);
 
 }

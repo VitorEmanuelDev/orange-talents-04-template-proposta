@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.projeto_proposta.cartao.CartaoClientResponse;
 
-@FeignClient(url = "http://127.0.0.1:8888", name = "cartoes")
+@FeignClient(url = "${cartoes.host}", name = "cartoes")
 public interface Cartoes {
 
     @GetMapping("/api/cartoes")

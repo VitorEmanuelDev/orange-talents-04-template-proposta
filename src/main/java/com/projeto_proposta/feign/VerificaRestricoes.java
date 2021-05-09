@@ -8,7 +8,7 @@ import com.projeto_proposta.cartao.CartaoRequest;
 import com.projeto_proposta.cartao.CartaoResponse;
 
 
-@FeignClient(url = "http://127.0.0.1:9999/api/solicitacao", name = "analise")
+@FeignClient(url = "${analises.host}", name = "analise")
 public interface VerificaRestricoes {
 
 	@PostMapping
