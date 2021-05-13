@@ -6,7 +6,6 @@ import javax.validation.constraints.*;
 import com.projeto_proposta.cartao.Cartao;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Entity
 public class Bloqueio {
@@ -15,7 +14,7 @@ public class Bloqueio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @NotNull
     private Cartao cartao;
 
