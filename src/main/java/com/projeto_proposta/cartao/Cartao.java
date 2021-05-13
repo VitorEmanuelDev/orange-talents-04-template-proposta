@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.projeto_proposta.biometria.Biometria;
+import com.projeto_proposta.bloqueio.Bloqueio;
 import com.projeto_proposta.proposta.Proposta;
 
 
@@ -22,6 +23,9 @@ public class Cartao {
     
     @OneToMany(mappedBy = "cartao")
     private List<Biometria> biometrias;
+    
+    @OneToOne(mappedBy = "cartao")
+    private Bloqueio bloqueio;
 
     
     @Deprecated
@@ -49,6 +53,11 @@ public class Cartao {
     public Proposta getProposta() {
         return proposta;
     }
+
+	public Object getBloqueio() {
+		
+		return bloqueio;
+	}
     
     
 }
