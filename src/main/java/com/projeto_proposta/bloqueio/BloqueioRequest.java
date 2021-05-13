@@ -1,40 +1,34 @@
 package com.projeto_proposta.bloqueio;
 
-import javax.servlet.http.HttpServletRequest;
+
+import javax.validation.constraints.NotNull;
 
 import com.projeto_proposta.cartao.Cartao;
 
-import java.util.Optional;
 
 public class BloqueioRequest {
 
-    private String ipCliente;
-    private String userAgent;
+	 @NotNull
+	 private String sistemaResponsavel;
 
-    public BloqueioRequest(String ipCliente, String userAgent) {
-    	
-        this.ipCliente = ipCliente;
-        this.userAgent = userAgent;
-        
-    }
+	 @Deprecated
+	 public BloqueioRequest() {
+	 
+	 }
 
+	 public BloqueioRequest(String sistemaResponsavel) {
+	        this.sistemaResponsavel = sistemaResponsavel;
+	 }
+	 
+	 public BloqueioRequest(BloqueioRequest request) {
+	        this.sistemaResponsavel = request.getSistemaResponsavel();
+	 }
+	 
+	 public String getSistemaResponsavel() {
+	        return sistemaResponsavel;
+	 }
 
-    public String getIpCliente() {
-    	
-        return ipCliente;
-        
-    }
-
-    public String getUserAgent() {
-    	
-        return userAgent;
-        
-    }
-
-
-    public Bloqueio toModel(Optional<Cartao> cartao, HttpServletRequest request) {
-    	
-        return new Bloqueio(cartao,request.getRemoteAddr(), request.getHeader("User-Agent"));
-        
-    }
+	 public Bloqueio toModel(Cartao cartao, String ip, String userAgent) {
+	        return new Bloqueio(cartao, ip, userAgent);
+	  }
 }

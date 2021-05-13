@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 import com.projeto_proposta.biometria.Biometria;
 import com.projeto_proposta.bloqueio.Bloqueio;
+import com.projeto_proposta.bloqueio.BloqueioCartao;
 import com.projeto_proposta.proposta.Proposta;
 
 
@@ -24,8 +25,8 @@ public class Cartao {
     @OneToMany(mappedBy = "cartao")
     private List<Biometria> biometrias;
     
-    @OneToOne(mappedBy = "cartao")
-    private Bloqueio bloqueio;
+    @Enumerated(EnumType.STRING)
+    private BloqueioCartao statusCartao;
 
     
     @Deprecated
@@ -54,10 +55,13 @@ public class Cartao {
         return proposta;
     }
 
-	public Object getBloqueio() {
-		
-		return bloqueio;
-	}
+    public BloqueioCartao getStatusCartao() {
+        return statusCartao;
+    }
+
+    public void adicionaBloqueio(){
+        this.statusCartao = BloqueioCartao.BLOQUEADO;
+    }
     
     
 }
