@@ -5,7 +5,6 @@ import java.util.*;
 import javax.persistence.*;
 
 import com.projeto_proposta.biometria.Biometria;
-import com.projeto_proposta.bloqueio.BloqueioCartao;
 import com.projeto_proposta.proposta.Proposta;
 import com.projeto_proposta.viagem.Viagem;
 
@@ -26,7 +25,7 @@ public class Cartao {
     private List<Biometria> biometrias;
     
     @Enumerated(EnumType.STRING)
-    private BloqueioCartao statusCartao;
+    private StatusCartao statusCartao;
     
     @OneToMany(cascade = CascadeType.MERGE)
     private Set<Viagem> viagem = new HashSet<>();
@@ -58,12 +57,12 @@ public class Cartao {
         return proposta;
     }
 
-    public BloqueioCartao getStatusCartao() {
+    public StatusCartao getStatusCartao() {
         return statusCartao;
     }
 
     public void adicionaBloqueio(){
-        this.statusCartao = BloqueioCartao.BLOQUEADO;
+        this.statusCartao = StatusCartao.BLOQUEADO;
     }
     
     public void adicionaViagem(Viagem viagem){
