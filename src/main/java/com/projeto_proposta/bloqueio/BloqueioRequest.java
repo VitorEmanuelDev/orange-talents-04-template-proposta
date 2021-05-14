@@ -16,10 +16,7 @@ public class BloqueioRequest {
 	 
 	 }
 
-	 public BloqueioRequest(String sistemaResponsavel) {
-	        this.sistemaResponsavel = sistemaResponsavel;
-	 }
-	 
+		 
 	 public BloqueioRequest(BloqueioRequest request) {
 	        this.sistemaResponsavel = request.getSistemaResponsavel();
 	 }
