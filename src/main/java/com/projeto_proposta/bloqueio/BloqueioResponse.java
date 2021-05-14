@@ -1,7 +1,6 @@
 package com.projeto_proposta.bloqueio;
 
 
-
 public class BloqueioResponse {
 
     private String status;
