@@ -1,13 +1,13 @@
 package com.projeto_proposta.cartao;
 
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
 
 import com.projeto_proposta.biometria.Biometria;
-import com.projeto_proposta.bloqueio.Bloqueio;
 import com.projeto_proposta.bloqueio.BloqueioCartao;
 import com.projeto_proposta.proposta.Proposta;
+import com.projeto_proposta.viagem.Viagem;
 
 
 @Entity
@@ -27,6 +27,9 @@ public class Cartao {
     
     @Enumerated(EnumType.STRING)
     private BloqueioCartao statusCartao;
+    
+    @OneToMany(cascade = CascadeType.MERGE)
+    private Set<Viagem> viagem = new HashSet<>();
 
     
     @Deprecated
@@ -61,6 +64,14 @@ public class Cartao {
 
     public void adicionaBloqueio(){
         this.statusCartao = BloqueioCartao.BLOQUEADO;
+    }
+    
+    public void adicionaViagem(Viagem viagem){
+        this.viagem.add(viagem);
+    }
+    
+    public Set<Viagem> getViagem() {
+        return viagem;
     }
     
     
