@@ -29,10 +29,10 @@ public class Carteira {
     }
 
 
-    public Carteira(String email, Cartao cartao, String id) {
+    public Carteira(String email, Cartao cartao, String id, IdCarteira idCarteira) {
         this.email = email;
         this.cartao = cartao;
-        this.idCarteira = IdCarteira.PAYPAL;
+        this.idCarteira = idCarteira;
         this.assossiacaoId = id;
     }
 
@@ -49,7 +49,7 @@ public class Carteira {
         return cartao;
     }
 
-    public IdCarteira getIdentificadorCarteira() {
+    public IdCarteira getIdCarteira() {
         return idCarteira;
     }
 

@@ -35,9 +35,9 @@ public class CarteiraController {
                                        UriComponentsBuilder uriComponentsBuilder){
         Optional<Cartao> cartao = cartaoRepository.findById(id);
         if(cartao.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cartao nao encontrado");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cartao não existe");
         }
-        Optional<Carteira> carteira = carteiraRepository.findByCartaoAndIdCarteira(cartao.get(), request.getCarteira());
+        Optional<Carteira> carteira = carteiraRepository.findByCartaoAndIdCarteira(cartao.get(), request.getIdCarteira());
         if(carteira.isPresent()){
             throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY, "Carteira já assossiada ao crtão");
         }

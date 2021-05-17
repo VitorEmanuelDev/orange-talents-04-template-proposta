@@ -21,11 +21,11 @@ public class CarteiraRequest {
         return email;
     }
 
-    public IdCarteira getCarteira() {
+    public IdCarteira getIdCarteira() {
         return idCarteira;
     }
 
     public Carteira toModel(Cartao cartao, String id) {
-        return new Carteira(email, cartao, id);
+        return new Carteira(email, cartao, id, idCarteira);
     }
 }
