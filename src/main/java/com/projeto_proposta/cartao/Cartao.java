@@ -66,7 +66,7 @@ public class Cartao {
     }
     
     public void adicionaViagem(Viagem viagem){
-        this.viagem.add(viagem);
+    	this.statusCartao = StatusCartao.VIAJANDO;
     }
     
     public Set<Viagem> getViagem() {

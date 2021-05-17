@@ -17,7 +17,7 @@ import java.net.URI;
 import java.util.Optional;
 
 
-@RequestMapping("biometria")
+@RequestMapping("/biometria")
 @RestController
 public class BiometriaController {
 

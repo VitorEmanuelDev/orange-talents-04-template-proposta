@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.projeto_proposta.bloqueio.BloqueioRequest;
 import com.projeto_proposta.bloqueio.BloqueioResponse;
 import com.projeto_proposta.cartao.CartaoClientResponse;
+import com.projeto_proposta.carteira.CarteiraRequest;
+import com.projeto_proposta.carteira.CarteiraResponse;
 import com.projeto_proposta.viagem.AvisoViagemResponse;
 import com.projeto_proposta.viagem.ViagemRequest;
 
@@ -25,4 +27,6 @@ public interface Cartoes {
     @PostMapping("/{id}/avisos")
     public AvisoViagemResponse avisoViagem(@PathVariable(name = "id") String id, @RequestBody ViagemRequest request);
     
+    @PostMapping("/{id}/carteiras")
+    public CarteiraResponse carteira(@PathVariable(name = "id") String id, @RequestBody CarteiraRequest request);
 }
