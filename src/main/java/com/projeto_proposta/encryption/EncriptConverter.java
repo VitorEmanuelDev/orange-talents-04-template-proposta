@@ -9,7 +9,8 @@ import javax.persistence.Converter;
 @Converter
 public class EncriptConverter implements AttributeConverter<String, String> {
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public String convertToDatabaseColumn(String documento) {
         try {
             return Encryptors.queryableText("${proposta.ofuscamento.texto}", "12345678").encrypt(documento);
@@ -18,7 +19,8 @@ public class EncriptConverter implements AttributeConverter<String, String> {
         }
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public String convertToEntityAttribute(String documento) {
         try {
             return Encryptors.queryableText("${proposta.ofuscamento.texto}", "12345678").decrypt(documento);
