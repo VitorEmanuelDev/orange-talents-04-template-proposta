@@ -8,6 +8,7 @@ import javax.validation.constraints.*;
 import com.projeto_proposta.cartao.Cartao;
 import com.projeto_proposta.cartao.CartaoRequest;
 import com.projeto_proposta.cartao.RestricaoCartao;
+import com.projeto_proposta.encryption.EncriptConverter;
 import com.projeto_proposta.validation.CpfOuCnpj;
 
 @Entity
@@ -18,6 +19,7 @@ public class Proposta {
 	private Long id;
 	
 	@CpfOuCnpj
+	@Convert(converter = EncriptConverter.class)
 	private String documento;
 	
 	@Email
