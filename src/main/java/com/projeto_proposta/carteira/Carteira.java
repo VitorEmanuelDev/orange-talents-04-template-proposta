@@ -12,6 +12,7 @@ public class Carteira {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Email
     @NotNull
     @NotBlank
     private String email;

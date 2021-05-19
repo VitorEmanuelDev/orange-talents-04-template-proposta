@@ -19,6 +19,7 @@ import com.projeto_proposta.feign.VerificaRestricoes;
 import com.projeto_proposta.validation.CpfOuCnpjIsPresent;
 
 import feign.FeignException;
+import io.opentracing.*;
 
 @RestController
 @RequestMapping("/propostas")
@@ -31,13 +32,16 @@ public class PropostaController {
 	private CpfOuCnpjIsPresent cpfOuCnpjIsPresent;
 	
 	@Autowired
-	private VerificaRestricoes verificaRestricoes;	
+	private VerificaRestricoes verificaRestricoes;
+	
+	private final Tracer tracer;
 
-	public PropostaController(CpfOuCnpjIsPresent cpf_cnpj_IsPresent, PropostaRepository repository, VerificaRestricoes verificaRestricoes) {
+	public PropostaController(CpfOuCnpjIsPresent cpf_cnpj_IsPresent, PropostaRepository repository, Tracer tracer, VerificaRestricoes verificaRestricoes) {
 		
 		super();
 		this.cpfOuCnpjIsPresent = cpf_cnpj_IsPresent;
 		this.repository = repository;
+		this.tracer = tracer;
 		this.verificaRestricoes = verificaRestricoes;
 		
 	}
@@ -53,6 +57,8 @@ public class PropostaController {
 	public ResponseEntity<PropostaResponse> criaProposta(@RequestBody @Valid PropostaRequest request,
 			UriComponentsBuilder uriComponentsBuilder) {
 		
+		Span activeSpan = tracer.activeSpan();
+		activeSpan.setTag("user.email", "vitor.lima@zup.com.br");
 		Proposta proposta = request.toModel();
 		repository.save(proposta);
 		verificaRestricao(proposta);
@@ -74,8 +80,6 @@ public class PropostaController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 			
 		}
-		
-		
 		
 	}
 	

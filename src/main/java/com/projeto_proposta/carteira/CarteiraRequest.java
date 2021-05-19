@@ -1,10 +1,16 @@
 package com.projeto_proposta.carteira;
 
 
+import javax.validation.constraints.*;
+
 import com.projeto_proposta.cartao.Cartao;
+
 
 public class CarteiraRequest {
 
+	@Email
+	@NotNull
+	@NotBlank
     private String email;
     private IdCarteira idCarteira;
 

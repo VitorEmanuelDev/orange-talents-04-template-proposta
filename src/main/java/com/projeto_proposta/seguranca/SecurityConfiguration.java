@@ -1,4 +1,4 @@
-package com.projeto_proposta.seguranca;
+/*package com.projeto_proposta.seguranca;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,4 +28,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
     }
-}
+}*/
